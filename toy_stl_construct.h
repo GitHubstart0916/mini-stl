@@ -21,6 +21,7 @@ inline void destroy(_T1* p) {
 template<class _ForwardIterator, class _T>
 inline void _destroy(_ForwardIterator first, _ForwardIterator last, _T*) {
     // toy_std::is_void<_T>::value;
+    typedef typename __type_traits<_T>::has_trivial_destructor _Trivial_destructor;
 }
 
 template<class _ForwardIterator> 
