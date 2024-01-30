@@ -1,0 +1,46 @@
+template<class T>
+class auto_ptr {
+    private:
+        T* __ptr;
+    public:
+        typedef T element_type;
+        explicit auto_ptr(T* p) : __ptr(p) {}
+        
+        template<class U>
+        auto_ptr(const auto_ptr<U>& rhs) : __ptr(rhs) {}
+
+        auto_ptr& operator=(auto_ptr& __p) {
+            if (&__p != this) {
+                delete __ptr;
+                __ptr = __p.release();
+            }
+            return *this;
+        }
+
+        ~auto_ptr() {delete __ptr;}
+
+        // p->m while be explian as (p.operator->())->m
+        T* operator->() const {
+            return __ptr;
+        }
+
+        T& operator*() const {
+            return *__ptr;
+        }
+
+        T* get() const {
+            return __ptr;
+        }
+
+        T* release() {
+            T* ret = __ptr;
+            __ptr = 0;
+            return ret;
+        }
+        void reset(T* p) {
+            if (p != __ptr) {
+                delete __ptr;
+                __ptr = p;
+            }
+        }
+};
