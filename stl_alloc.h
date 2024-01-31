@@ -246,4 +246,39 @@ __default_alloc_template<__threads, __inst>::reallocate(void* __p, size_t __old_
     return (__ret);
 }
 
+//init
+template<bool __threads, int __inst>
+char* __default_alloc_template<__threads, __inst>::__start_free = 0;
+template<bool __threads, int __inst>
+char* __default_alloc_template<__threads, __inst>::__end_free = 0;
+template<bool __threads, int __inst>
+size_t __default_alloc_template<__threads, __inst>::__heap_size = 0;
+template<bool __threads, int __inst>
+typename __default_alloc_template<__threads, __inst>::_obj* 
+volatile __default_alloc_template<__threads, __inst>::__free_list[__NFREELISTS] = {
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+};
+
+typedef __default_alloc_template<false, 0> alloc;
+
+template<class _T, class _Alloc = alloc>
+class simple_alloc {
+    public:
+        static _T* allocate(size_t __n) {
+            return __n == 0 ? 0 : _Alloc::allocate(__n * sizeof(_T));
+        }
+        static void* allocate(void) {
+            return _Alloc::allocate(sizeof(_T));
+        }
+        static void deallocate(_T* __p, size_t __n) {
+            if (__n != 0) _Alloc::deallocate(__p, __n * sizeof(_T));
+        }
+        static void deallocate(_T* __p) {
+            if (__n != 0) _Alloc::deallocate(__p, sizeof(_T));
+        }
+};
+
 #endif
