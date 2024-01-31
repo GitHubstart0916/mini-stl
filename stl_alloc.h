@@ -277,7 +277,7 @@ class simple_alloc {
             if (__n != 0) _Alloc::deallocate(__p, __n * sizeof(_T));
         }
         static void deallocate(_T* __p) {
-            if (__n != 0) _Alloc::deallocate(__p, sizeof(_T));
+            _Alloc::deallocate(__p, sizeof(_T));
         }
 };
 
