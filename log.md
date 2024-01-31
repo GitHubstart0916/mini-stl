@@ -30,3 +30,5 @@
 * [typedef typename](https://zhuanlan.zhihu.com/p/106198289)
 
 * [右值引用](https://zhuanlan.zhihu.com/p/335994370)
+
+* [拷贝构造函数,模板类的拷贝构造函数](https://www.cnblogs.com/silentNight/p/5545643.html)
