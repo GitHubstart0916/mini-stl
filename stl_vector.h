@@ -2,6 +2,8 @@
 #define _STL_VECTOR_H_
 
 #include "stl_alloc.h"
+#include "stl_uninitialized.h"
+#include "stl_config.h"
 #include <cstddef>
 namespace miniSTL {
     template<class _T, class _Alloc>
@@ -65,15 +67,41 @@ namespace miniSTL {
 
         public:
             //method
-            iterator begin() {
-                return _Base::__M_start;
-            }
-            const_iterator begin() const {
-                return _Base::__M_start;
-            }
-            //TODO:
+            // base method for iterator bound
+            iterator begin() { return _Base::__M_start; }
+            const_iterator begin() const { return _Base::__M_start; }
+            iterator end() { return _Base::__M_finish; }
+            const_iterator end() const { return _Base::__M_finish; }
+            iterator rbegin() { return _Base::__M_finish; }
+            const_iterator rbegin() const { return _Base::__M_finish; }
+            iterator rend() { return _Base::__M_start; }
+            const_iterator rend() const { return _Base::__M_start; }
 
-    }
+            // continer size related method
+            size_type size() const { return size_type(end() - begin()); }
+            size_type max_size() const { return size_type(-1) / sizeof(value_type); }
+            size_type capacity() const { return size_type(_Base::__M_end_of_storage - begin()); }
+            bool empty() const { return begin() == end(); }
+
+            // refer
+            reference operator[](size_type __n) {
+                return *(begin() + __n);
+            }
+
+            reference operator[](size_type __n) const {
+                return *(begin() + __n);
+            }
+
+            // at
+            void _M_range_check(size_type __n) {
+                if (__n >= size()) __STL_RETHROW;
+            }
+            reference at(size_type __n) {
+                
+                return *(begin() + __n);
+            }
+
+    };
 
 
 

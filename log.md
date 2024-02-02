@@ -32,3 +32,8 @@
 * [右值引用](https://zhuanlan.zhihu.com/p/335994370)
 
 * [拷贝构造函数,模板类的拷贝构造函数](https://www.cnblogs.com/silentNight/p/5545643.html)
+
+* [exception specification](https://learn.microsoft.com/en-us/cpp/cpp/exception-specifications-throw-cpp?view=msvc-170)(https://stackoverflow.com/questions/22352927/throw-after-function-declaration-in-c-exception-struct)
+* [虚函数,虚表](https://learn.microsoft.com/zh-cn/cpp/cpp/virtual-functions?view=msvc-170)
+
+* [虚析构函数](https://zhuanlan.zhihu.com/p/148290103)

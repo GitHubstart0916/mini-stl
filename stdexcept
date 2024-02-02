@@ -1,0 +1,21 @@
+#ifndef _EXCEPT_DEF_
+#define _EXCEPT_DEF_
+#include "stl_exception.h"
+
+
+//define exception
+class _Named_exception {
+
+};
+
+
+// class 
+
+
+
+
+
+
+
+
+#endif
