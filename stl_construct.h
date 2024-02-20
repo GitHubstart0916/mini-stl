@@ -14,7 +14,7 @@ inline void _Construct(_T1 *__p) {
 
 template <class _T1>
 inline void _Destroy(_T1* __p) {
-    __p-~_T1();
+    __p->~_T1();
 }
 
 template<class _ForwardIterator>

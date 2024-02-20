@@ -2,6 +2,7 @@
 #define _STL_VECTOR_H_
 
 #include "stl_alloc.h"
+#include "stl_construct.h"
 #include "stl_uninitialized.h"
 #include "stl_config.h"
 #include "stl_range_errors.h"
@@ -104,6 +105,39 @@ public:
     const_reference at(size_type __n) const {
         _M_range_check(__n);
         return *(begin() + __n);
+    }
+    //construct method
+    explicit vector(const allocator_type& __a = allocator_type())
+    : _Base(__a) {}
+
+    vector(size_type __n, const_reference __value, const allocator_type& __a = allocator_type())
+    : _Base(__n, __a) 
+    {
+        _Base::__M_finish = uninitialized_fill_n(_Base::__M_start, __n, __value);
+    }
+
+    explicit vector(size_type __n)
+    : _Base(__n) 
+    {
+        _Base::__M_finish = uninitialized_fill_n(_Base::__M_start, __n, value_type());
+    }
+
+    vector(const vector<_T, _Alloc>& __x)
+    : _Base(__x.size(), __x.get_allocator())
+    {
+        _Base::__M_finish = uninitialized_copy(__x.begin(), __x.end(), _Base::__M_start);
+    }
+
+    vector(const_pointer __first, const_pointer __last, const allocator_type& __a = allocator_type())
+    : _Base(__last - __first, __a)
+    {
+        _Base::__M_finish = uninitialized_copy(__first, __last, _Base::__M_start);
+    }
+
+    //destruct method
+
+    ~vector() {
+        _Destroy(_Base::__M_start, _Base::__M_finish);
     }
 
 };
