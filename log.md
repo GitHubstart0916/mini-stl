@@ -8,6 +8,8 @@
 
 * [restrict](https://zhuanlan.zhihu.com/p/349726808)
 
+* [_attribute_](https://blog.csdn.net/lisemi/article/details/102816080)
+
 #### 部分.h实现原理
 
 * [type_traits](https://csguide.cn/cpp/modern_cpp/type_traits.html#%E4%BB%80%E4%B9%88%E6%98%AF-type-traits)
@@ -37,3 +39,17 @@
 * [虚函数,虚表](https://learn.microsoft.com/zh-cn/cpp/cpp/virtual-functions?view=msvc-170)
 
 * [虚析构函数](https://zhuanlan.zhihu.com/p/148290103)
+
+* [异常规范](https://learn.microsoft.com/zh-cn/cpp/cpp/exception-specifications-throw-cpp?view=msvc-170)
+
+* [char相关类型](https://learn.microsoft.com/en-us/cpp/cpp/char-wchar-t-char16-t-char32-t?view=msvc-170)
+
+* [构造函数详解](https://learn.microsoft.com/zh-cn/cpp/cpp/constructors-cpp?view=msvc-170)
+
+* [构造函数初始化列表](https://blog.csdn.net/weicao1990/article/details/81536022)
+
+* [成员访问控制以及类继承方式](https://learn.microsoft.com/zh-cn/cpp/cpp/member-access-control-cpp?view=msvc-170#access-control-in-derived-classes)
+
+#### TODO-LIST
+
+* 分析STL相关异常处理机制, 关注`vterminate.cc`相关实现, 可能有用

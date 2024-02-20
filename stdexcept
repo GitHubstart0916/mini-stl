@@ -1,21 +1,53 @@
 #ifndef _EXCEPT_DEF_
 #define _EXCEPT_DEF_
+#include "stl_config.h"
 #include "stl_exception.h"
-
+// #include "stl_string_fwd.h"
+#include "string"
 
 //define exception
-class _Named_exception {
+__STL_BEGIN_NAMESPACE
 
+class __Named_exception {
+private:
+    enum {__E_buffsize = 256};
+    char __E_name[__E_buffsize];
+public:
+    __Named_exception(const string& __s) {
+        strncpy(__E_name, __get_c_string(__s), __E_buffsize);
+        __E_name[__E_buffsize - 1] = '\0';
+    }
+    __Named_exception() {}
+    virtual const char* what() const __STL_NOTHROW { return __E_name; }
+};
+
+class logic_error : public __Named_exception {
+public:
+    logic_error(const string& __s) : __Named_exception(__s) {}
+};
+
+class runtime_error: public __Named_exception {
+public:
+    runtime_error(const string& __s) : __Named_exception(__s) {}
+};
+
+// TODO: can add more exception type
+class length_error : public logic_error {
+public:
+    length_error(const string& __s) : logic_error(__s) {}
 };
 
 
-// class 
+class out_of_range : public logic_error {
+public:
+    out_of_range(const string& __s) : logic_error(__s) {}
+};
 
+class range_error : public runtime_error {
+public:
+    range_error(const string& __s) : runtime_error(__s) {}
+};
 
-
-
-
-
-
+__STL_END_NAMESPACE
 
 #endif

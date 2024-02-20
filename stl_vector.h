@@ -4,6 +4,7 @@
 #include "stl_alloc.h"
 #include "stl_uninitialized.h"
 #include "stl_config.h"
+#include "stl_range_errors.h"
 #include <cstddef>
 namespace miniSTL {
     template<class _T, class _Alloc>
@@ -94,10 +95,10 @@ namespace miniSTL {
 
             // at
             void _M_range_check(size_type __n) {
-                if (__n >= size()) __STL_RETHROW;
+                if (__n >= size()) _stl_throw_range_error("vector");
             }
             reference at(size_type __n) {
-                
+                _M_range_check(__n);
                 return *(begin() + __n);
             }
 
